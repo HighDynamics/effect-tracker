@@ -1,0 +1,18 @@
+.turnManipulatorButtonsContainer {
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+}
+.turnManipulatorButtons {
+  color: white;
+  border: none;
+  background-color: rgba(3, 26, 48, 1);
+}
+.resetButtonContainer {
+  margin: auto;
+  width: 50%;
+}
+.resetButton {
+  width: 100%;
+}

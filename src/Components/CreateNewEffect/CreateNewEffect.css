@@ -1,0 +1,21 @@
+.formContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.formItem {
+  width: 90%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.formItemTitle {
+  margin-bottom: 0;
+  text-align: left;
+}
+.durationInputContainer {
+  display: flex;
+  justify-content: center;
+}
+.durationNumberInput {
+  width: 50%;
+  margin-right: 5px;
+}
