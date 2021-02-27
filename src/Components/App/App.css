@@ -3,6 +3,12 @@ body {
   background-color: rgba(3, 23, 102, 0.5);
   color: white;
 }
+.basicButton {
+  height: 25px;
+  color: white;
+  border: none;
+  background-color: rgba(3, 26, 48, 1);
+}
 .title {
   margin: auto;
   text-align: center;
@@ -10,4 +16,11 @@ body {
 .turnCount {
   text-align: center;
   margin-bottom: 5px;
+}
+.newEffectButtonContainer {
+  margin: auto;
+  width: 50%;
+}
+.newEffectButton {
+  width: 100%;
 }

@@ -6,15 +6,15 @@ const TurnManipulator = ({ nextTurn, previousTurn, reset }) => {
   return (
     <>
       <div className="turnManipulatorButtonsContainer">
-        <button className="turnManipulatorButtons" onClick={previousTurn}>
+        <button className="basicButton" onClick={previousTurn}>
           {previousTurnArrows}
         </button>
-        <button className="turnManipulatorButtons" onClick={nextTurn}>
+        <button className="basicButton" onClick={nextTurn}>
           {nextTurnArrows}
         </button>
       </div>
       <div className="resetButtonContainer">
-        <button className="resetButton turnManipulatorButtons" onClick={reset}>
+        <button className="resetButton basicButton" onClick={reset}>
           reset
         </button>
       </div>

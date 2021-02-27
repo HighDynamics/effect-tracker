@@ -4,15 +4,11 @@
   justify-content: space-around;
   width: 50%;
 }
-.turnManipulatorButtons {
-  color: white;
-  border: none;
-  background-color: rgba(3, 26, 48, 1);
-}
 .resetButtonContainer {
   margin: auto;
-  width: 50%;
+  width: 30%;
 }
 .resetButton {
   width: 100%;
+  margin-top: 5px;
 }

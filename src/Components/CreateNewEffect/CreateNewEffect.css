@@ -4,18 +4,34 @@
   justify-content: space-around;
 }
 .formItem {
-  width: 90%;
+  width: 40%;
   background-color: rgba(0, 0, 0, 0.5);
 }
 .formItemTitle {
   margin-bottom: 0;
   text-align: left;
 }
+.requiredText {
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
 .durationInputContainer {
+  display: flex;
+  justify-content: flex-start;
+}
+.durationNumberInput {
+  width: 25%;
+  margin-right: 5px;
+}
+.addEffectButtonContainer {
+  margin: auto;
+  margin-top: 5px;
+  width: 30%;
   display: flex;
   justify-content: center;
 }
-.durationNumberInput {
-  width: 50%;
-  margin-right: 5px;
+.addEffectButton {
+  width: 100%;
 }

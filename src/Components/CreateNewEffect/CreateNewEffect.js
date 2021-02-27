@@ -6,7 +6,7 @@ const CreateNewEffect = ({ addEffect, turnNumber }) => {
   const [name, setName] = useState("");
   const [target, setTarget] = useState("");
   const [details, setDetails] = useState("");
-  const [duration, setDuration] = useState(0);
+  const [duration, setDuration] = useState(1);
   const [durationType, setDurationType] = useState("");
   const [conditions, setConditions] = useState("");
   let effect = {
@@ -35,6 +35,7 @@ const CreateNewEffect = ({ addEffect, turnNumber }) => {
               onChange={(e) => setName(e.target.value)}
               required
             />
+            <p className="requiredText">* required</p>
           </fieldset>
           <fieldset className="formItem">
             <legend className="formItemTitle">Duration</legend>
@@ -51,13 +52,14 @@ const CreateNewEffect = ({ addEffect, turnNumber }) => {
                 className="durationTypeSelector"
                 onChange={(e) => setDurationType(e.target.value)}
               >
-                <option value="rounds">rounds</option>
-                <option value="minutes">minutes</option>
-                <option value="hours">hours</option>
-                <option value="days">days</option>
+                <option value="rounds">round(s)</option>
+                <option value="minutes">minute(s)</option>
+                <option value="hours">hour(s)</option>
+                <option value="days">day(s)</option>
                 <option value="permanent">permanent</option>
               </select>
-            </div>
+            </div>{" "}
+            <p className="requiredText">* required</p>
           </fieldset>
           <fieldset className="formItem">
             <legend className="formItemTitle">Target or Area</legend>
@@ -89,7 +91,13 @@ const CreateNewEffect = ({ addEffect, turnNumber }) => {
             />
           </fieldset>
         </div>
-        <input type="submit" value="add effect" />
+        <div className="addEffectButtonContainer">
+          <input
+            className="basicButton addEffectButton"
+            type="submit"
+            value="add effect"
+          />
+        </div>
       </form>
     </>
   );

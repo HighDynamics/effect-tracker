@@ -33,9 +33,14 @@ function App() {
         reset={reset}
       />
       <br />
-      <button onClick={() => setToggle(!toggle)}>
-        {toggle ? "Collapse" : "New Effect"}
-      </button>
+      <div className="newEffectButtonContainer">
+        <button
+          className="newEffectButton basicButton"
+          onClick={() => setToggle(!toggle)}
+        >
+          {toggle ? "Collapse" : "New Effect"}
+        </button>
+      </div>
       {toggle ? (
         <CreateNewEffect addEffect={addEffect} turnNumber={turnNumber} />
       ) : null}
