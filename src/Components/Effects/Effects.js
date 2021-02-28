@@ -11,7 +11,12 @@ import {
   getRemainingRounds,
 } from "../../utilities";
 
-const EffectItem = ({ effect, turnNumber, removeEffect }) => {
+const EffectItem = ({
+  effect,
+  turnNumber,
+  removeEffect,
+  resetEffectDuration,
+}) => {
   const [toggle, setToggle] = useState(false);
   const name = effect.name;
   const target = effect.target;
@@ -43,6 +48,8 @@ const EffectItem = ({ effect, turnNumber, removeEffect }) => {
 
   const additionalClass = getClassName(remainingRounds);
 
+  const resetDuration = () => resetEffectDuration(effect);
+
   return (
     <button
       className={additionalClass + " effectContainer"}
@@ -72,7 +79,13 @@ const EffectItem = ({ effect, turnNumber, removeEffect }) => {
             </p>
           ) : null}
           <div className="break"></div>
-          <div className="endEffectButtonContainer">
+          <div className="endResetEffectButtonContainer">
+            <button
+              className="basicButton resetEffectButton"
+              onClick={resetDuration}
+            >
+              Reset Duration
+            </button>
             <button
               className="basicButton endEffectButton"
               onClick={() => removeEffect(effect)}
@@ -93,12 +106,19 @@ const Effects = ({ turnNumber, effects, setEffects }) => {
     newEffectsArray.splice(index, 1);
     setEffects(newEffectsArray);
   };
+  const resetEffectDuration = (effect) => {
+    const newEffectsArray = clone(effects);
+    const index = newEffectsArray.findIndex((e) => e.name === effect.name);
+    newEffectsArray[index].turnUsed = turnNumber;
+    setEffects(newEffectsArray);
+  };
   const effectItem = effects.map((effect) => (
     <EffectItem
       effect={effect}
       removeEffect={removeEffect}
       turnNumber={turnNumber}
       key={effect.name}
+      resetEffectDuration={resetEffectDuration}
     />
   ));
   return <>{effectItem}</>;
