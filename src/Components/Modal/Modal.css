@@ -1,0 +1,72 @@
+.modalBody {
+  position: fixed;
+  margin: 5% auto;
+  left: 0;
+  right: 0;
+  background-color: rgba(119, 122, 122, 0.97);
+  width: 90%;
+  height: auto;
+  box-shadow: 5px 10px 10px black;
+  border: 5px solid rgba(249, 156, 75, 0.5);
+}
+.radioButtonContainer {
+  margin-bottom: 2px;
+}
+.radioButtonLabel {
+  color: black;
+  margin: 2px;
+}
+.closeModalButtonContainer {
+  width: 30%;
+  margin: auto;
+  margin-top: 5px;
+  padding-bottom: 5px;
+}
+.closeModalButton {
+  width: 100%;
+  background-color: rgba(118, 130, 152, 1);
+}
+.keepEffectsContainer {
+  color: white;
+}
+.keepEffectsHeader {
+  text-align: center;
+  margin-top: 0;
+}
+.keepLoseHeaders {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  margin: auto;
+}
+.smallHeaders {
+  margin: 0;
+}
+.listOfEffectsContainer {
+  display: flex;
+  margin: auto;
+  width: 90%;
+  justify-content: center;
+  outline: 2px solid white;
+}
+.effectsToKeepContainer {
+  border-right: 2px solid white;
+  width: 100%;
+}
+.effectsToLoseContainer {
+  border-left: 2px solid white;
+  width: 100%;
+}
+.effectButton {
+  width: 100%;
+  outline: 1px solid white;
+}
+.confirmKeepersButtonContainer {
+  width: 50%;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.confirmKeepersButton {
+  width: 100%;
+}

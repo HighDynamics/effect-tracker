@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./CreateNewEffect.css";
 
-const CreateNewEffect = ({ addEffect, turnNumber }) => {
+const CreateNewEffect = ({ addEffect, turnNumber, setToggle }) => {
   const [name, setName] = useState("");
   const [target, setTarget] = useState("");
   const [details, setDetails] = useState("");
@@ -18,9 +18,22 @@ const CreateNewEffect = ({ addEffect, turnNumber }) => {
     conditions: conditions,
     turnUsed: turnNumber,
   };
+  const handlePermanentDuration = () => {
+    if (effect.durationType === "permanent") {
+      effect.duration = Infinity;
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
+    handlePermanentDuration();
     addEffect(effect);
+    setName("");
+    setTarget("");
+    setDetails("");
+    setDuration(1);
+    setDurationType("rounds");
+    setConditions("");
+    setToggle(false);
   };
   return (
     <>
@@ -50,6 +63,7 @@ const CreateNewEffect = ({ addEffect, turnNumber }) => {
               />
               <select
                 className="durationTypeSelector"
+                value={durationType === "" ? "rounds" : durationType}
                 onChange={(e) => setDurationType(e.target.value)}
               >
                 <option value="rounds">round(s)</option>
@@ -90,13 +104,14 @@ const CreateNewEffect = ({ addEffect, turnNumber }) => {
               onChange={(e) => setConditions(e.target.value)}
             />
           </fieldset>
-        </div>
-        <div className="addEffectButtonContainer">
-          <input
-            className="basicButton addEffectButton"
-            type="submit"
-            value="add effect"
-          />
+          <div className="break"></div>
+          <div className="addEffectButtonContainer">
+            <input
+              className="basicButton addEffectButton"
+              type="submit"
+              value="add effect"
+            />
+          </div>
         </div>
       </form>
     </>

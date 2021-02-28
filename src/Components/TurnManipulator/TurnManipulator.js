@@ -1,13 +1,31 @@
 import "./TurnManipulator.css";
 
-const TurnManipulator = ({ nextTurn, previousTurn, reset }) => {
+const TurnManipulator = ({
+  setTurnNumber,
+  turnNumber,
+  reset,
+  setModal,
+  modal,
+}) => {
   const previousTurnArrows = "<<";
   const nextTurnArrows = ">>";
+  const nextTurn = () => setTurnNumber(turnNumber + 1);
+  const previousTurn = () => setTurnNumber(turnNumber - 1);
+  const toggleModal = () => {
+    if (modal === "jumpTurn") {
+      setModal("off");
+    } else {
+      setModal("jumpTurn");
+    }
+  };
   return (
     <>
       <div className="turnManipulatorButtonsContainer">
         <button className="basicButton" onClick={previousTurn}>
           {previousTurnArrows}
+        </button>
+        <button className="basicButton" onClick={toggleModal}>
+          Jump
         </button>
         <button className="basicButton" onClick={nextTurn}>
           {nextTurnArrows}
@@ -15,7 +33,7 @@ const TurnManipulator = ({ nextTurn, previousTurn, reset }) => {
       </div>
       <div className="resetButtonContainer">
         <button className="resetButton basicButton" onClick={reset}>
-          reset
+          Reset
         </button>
       </div>
     </>

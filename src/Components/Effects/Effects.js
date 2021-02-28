@@ -1,82 +1,105 @@
+import { useState } from "react";
+
 import "./Effects.css";
 
-const EffectItem = ({ effect, turnNumber }) => {
+import {
+  clone,
+  getClassName,
+  getRoundsToMinutesAndSeconds,
+  getRoundsToHoursAndMinutes,
+  getRoundsToDaysAndHours,
+  getRemainingRounds,
+} from "../../utilities";
+
+const EffectItem = ({ effect, turnNumber, removeEffect }) => {
+  const [toggle, setToggle] = useState(false);
   const name = effect.name;
   const target = effect.target;
   const details = effect.details;
-  const duration = effect.duration;
-  const durationType = effect.durationType;
   const conditions = effect.conditions;
-  const turnUsed = effect.turnUsed;
-  const roundsToMinutes = (rounds) => {
-    const minutes = Math.floor(rounds / 10);
-    const seconds = Math.floor((rounds % 10) * 6);
-    return minutes + "m " + seconds + "s";
-  };
-  const roundsToHours = (rounds) => {
-    const hours = Math.floor(rounds / 600);
-    const minutes = Math.floor((rounds % 600) / 10);
-    return hours + "h " + minutes + "m";
-  };
-  const roundsToDays = (rounds) => {
-    const days = Math.floor(rounds / 14400);
-    const hours = Math.floor((rounds % 14400) / 600);
-    return days + "d " + hours + "h";
-  };
-  const getRemainingTime = (durationType) => {
-    let remainingRounds = turnUsed + duration - turnNumber;
-    switch (durationType) {
-      case "rounds":
-        break;
-      case "minutes":
-        remainingRounds = turnUsed + duration * 10 - turnNumber;
-        break;
-      case "hours":
-        remainingRounds = turnUsed + duration * 600 - turnNumber;
-        break;
-      case "days":
-        remainingRounds = turnUsed + duration * 14400 - turnNumber;
-        break;
-      case "permanent":
-        return "\u221e";
-      default:
-        break;
+  const infinitySymbol = "\u221e";
+
+  const remainingRounds = getRemainingRounds(effect, turnNumber);
+
+  const minutesAndSeconds = getRoundsToMinutesAndSeconds(remainingRounds);
+  const hoursAndMinutes = getRoundsToHoursAndMinutes(remainingRounds);
+  const daysAndHours = getRoundsToDaysAndHours(remainingRounds);
+
+  function formatRoundsRemaing(remainingRounds) {
+    if (remainingRounds === Infinity) {
+      return infinitySymbol;
+    } else if (remainingRounds < 20) {
+      return remainingRounds + " rounds";
+    } else if (remainingRounds >= 20 && remainingRounds < 600) {
+      return minutesAndSeconds[0] + "m " + minutesAndSeconds[1] + "s";
+    } else if (remainingRounds >= 600 && remainingRounds < 14400) {
+      return hoursAndMinutes[0] + "h " + hoursAndMinutes[1] + "m";
+    } else if (remainingRounds >= 14400) {
+      return daysAndHours[0] + "d " + daysAndHours[1] + "h";
     }
-    const formatTimeRemaing = (remainingRounds) => {
-      if (remainingRounds < 20) {
-        return remainingRounds + " rounds";
-      } else if (remainingRounds >= 20 && remainingRounds < 600) {
-        return roundsToMinutes(remainingRounds);
-      } else if (remainingRounds >= 600 && remainingRounds < 14400) {
-        return roundsToHours(remainingRounds);
-      } else if (remainingRounds >= 14400) {
-        return roundsToDays(remainingRounds);
-      }
-    };
-    return formatTimeRemaing(remainingRounds);
-  };
+  }
+
+  const remainingTime = formatRoundsRemaing(remainingRounds);
+
+  const additionalClass = getClassName(remainingRounds);
+
   return (
-    <>
-      <div className="effectContainer">
-        <p className="effectItem">Name: {name}</p>
-        {target !== "" ? <p className="effectItem">Target: {target}</p> : null}
-        {details !== "" ? (
-          <p className="effectItem">Details: {details}</p>
-        ) : null}
-        <p className="effectItem">
-          Remaining Time: {getRemainingTime(durationType)}
-        </p>
-        {conditions !== "" ? (
-          <p className="effectItem">Conditions: {conditions}</p>
-        ) : null}
-      </div>
-    </>
+    <button
+      className={additionalClass + " effectContainer"}
+      onClick={() => setToggle(!toggle)}
+    >
+      <p className="effectItem">
+        <span className="effectKeys">Name:</span> {name}
+      </p>
+      <p className="effectItem">
+        <span className="effectKeys">Remaining Time:</span> {remainingTime}
+      </p>
+      {toggle ? (
+        <>
+          {target !== "" ? (
+            <p className="effectItem">
+              <span className="effectKeys">Target:</span> {target}
+            </p>
+          ) : null}
+          {details !== "" ? (
+            <p className="effectItem">
+              <span className="effectKeys">Details:</span> {details}
+            </p>
+          ) : null}
+          {conditions !== "" ? (
+            <p className="effectItem">
+              <span className="effectKeys">Conditions:</span> {conditions}
+            </p>
+          ) : null}
+          <div className="break"></div>
+          <div className="endEffectButtonContainer">
+            <button
+              className="basicButton endEffectButton"
+              onClick={() => removeEffect(effect)}
+            >
+              End Effect
+            </button>
+          </div>
+        </>
+      ) : null}
+    </button>
   );
 };
 
-const Effects = ({ turnNumber, effects }) => {
+const Effects = ({ turnNumber, effects, setEffects }) => {
+  const removeEffect = (effect) => {
+    const newEffectsArray = clone(effects);
+    const index = newEffectsArray.findIndex((e) => e.name === effect.name);
+    newEffectsArray.splice(index, 1);
+    setEffects(newEffectsArray);
+  };
   const effectItem = effects.map((effect) => (
-    <EffectItem effect={effect} turnNumber={turnNumber} key={effect.name} />
+    <EffectItem
+      effect={effect}
+      removeEffect={removeEffect}
+      turnNumber={turnNumber}
+      key={effect.name}
+    />
   ));
   return <>{effectItem}</>;
 };
