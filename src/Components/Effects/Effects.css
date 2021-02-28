@@ -27,11 +27,12 @@
   color: yellow;
 }
 .endResetEffectButtonContainer {
-  width: 40%;
+  width: 90%;
   margin: auto;
   display: flex;
   justify-content: space-between;
 }
 .endResetEffectButton {
   margin-bottom: 5px;
+  width: 50%;
 }

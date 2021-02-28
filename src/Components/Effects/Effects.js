@@ -81,13 +81,13 @@ const EffectItem = ({
           <div className="break"></div>
           <div className="endResetEffectButtonContainer">
             <button
-              className="basicButton resetEffectButton"
+              className="basicButton endResetEffectButton"
               onClick={resetDuration}
             >
               Reset Duration
             </button>
             <button
-              className="basicButton endEffectButton"
+              className="basicButton endResetEffectButton"
               onClick={() => removeEffect(effect)}
             >
               End Effect
