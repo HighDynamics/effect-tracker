@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./App.css";
 
@@ -10,10 +10,20 @@ import Modal from "../Modal/Modal";
 import { clone } from "../../utilities.js";
 
 function App() {
-  const [turnNumber, setTurnNumber] = useState(1);
-  const [effects, setEffects] = useState([]);
+  const [turnNumber, setTurnNumber] = useState(
+    Number(localStorage.getItem("turnNumber")) || 1
+  );
+  const [effects, setEffects] = useState(
+    JSON.parse(localStorage.getItem("effects")) || []
+  );
   const [toggle, setToggle] = useState(false);
   const [modal, setModal] = useState("off");
+  useEffect(() => {
+    localStorage.setItem("effects", JSON.stringify(effects));
+  }, [effects]);
+  useEffect(() => {
+    localStorage.setItem("turnNumber", turnNumber);
+  }, [turnNumber]);
   const reset = () => {
     if (modal === "keepEffects") {
       setModal("off");
