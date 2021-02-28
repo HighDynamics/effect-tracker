@@ -47,19 +47,24 @@
   margin: auto;
   width: 90%;
   justify-content: center;
-  outline: 2px solid white;
+  outline: 2px solid black;
 }
 .effectsToKeepContainer {
-  border-right: 2px solid white;
+  border-right: 1px solid black;
   width: 100%;
 }
 .effectsToLoseContainer {
-  border-left: 2px solid white;
+  border-left: 1px solid black;
   width: 100%;
+}
+.effectButtonContainer {
+  width: 90%;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .effectButton {
   width: 100%;
-  outline: 1px solid white;
 }
 .confirmKeepersButtonContainer {
   width: 50%;

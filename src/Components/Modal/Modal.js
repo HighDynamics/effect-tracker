@@ -9,7 +9,7 @@ const EffectButtons = ({ effect, handleClick, turnNumber }) => {
   const additionalClass = getClassName(remainingRounds);
 
   return (
-    <>
+    <div className="effectButtonContainer">
       <button
         key={effect.name}
         value={effect.name}
@@ -18,7 +18,7 @@ const EffectButtons = ({ effect, handleClick, turnNumber }) => {
       >
         {effect.name}
       </button>
-    </>
+    </div>
   );
 };
 
