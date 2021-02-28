@@ -59,7 +59,7 @@ const EffectItem = ({
         <span className="effectKeys">Name:</span> {name}
       </p>
       <p className="effectItem">
-        <span className="effectKeys">Remaining Time:</span> {remainingTime}
+        <span className="effectKeys">Time Left:</span> {remainingTime}
       </p>
       {toggle ? (
         <>
