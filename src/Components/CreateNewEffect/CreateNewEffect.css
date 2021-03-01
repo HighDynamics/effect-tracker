@@ -2,17 +2,43 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-color: gray;
+  border-radius: 25px;
   margin-bottom: 5px;
-  border: 3px solid black;
 }
 .formItem {
   width: 40%;
-  background-color: rgba(0, 0, 0, 0.5);
+  padding-top: 25px;
+  border: none;
 }
 .formItemTitle {
-  margin-bottom: 0;
+  transform: translateY(20px);
+  color: rgba(35, 37, 62, 1);
   text-align: left;
+}
+.textInput {
+  color: white;
+  background-color: inherit;
+  height: 1.5rem;
+  padding-left: 5px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.7),
+    inset -1px -1px 5px rgba(255, 255, 255, 0.9);
+}
+.textAreaInput {
+  color: white;
+  background-color: inherit;
+  height: 3.5rem;
+  padding-top: 5px;
+  padding-left: 5px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.7),
+    inset -1px -1px 5px rgba(255, 255, 255, 0.9);
+}
+::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
 }
 .requiredText {
   font-size: 12px;
@@ -27,6 +53,38 @@
 .durationNumberInput {
   width: 25%;
   margin-right: 5px;
+  color: white;
+}
+.durationTypeSelector {
+  user-select: none;
+  -webkit-user-select: none;
+  text-align: center;
+  height: 25px;
+  line-height: 25px;
+  padding: 0px 4px 0px 4px;
+  background-image: radial-gradient(
+    rgba(240, 231, 169, 1),
+    rgba(123, 171, 173, 1) 70%
+  );
+}
+.durationTypeSelectorOptionsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.durationTypeSelectorOptions {
+  margin-bottom: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  height: 25px;
+  line-height: 25px;
+  padding: 0px 4px 0px 4px;
+  background-color: transparent;
+  background-image: radial-gradient(rgba(240, 231, 169, 1), transparent 90%);
+}
+.permanent {
+  background-color: transparent;
+  background-image: radial-gradient(rgba(184, 158, 212, 1), transparent 90%);
 }
 .addEffectButtonContainer {
   margin: auto;

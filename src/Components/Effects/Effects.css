@@ -1,38 +1,70 @@
 .effectContainer {
-  width: 95%;
+  width: 90%;
   margin: auto;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-radius: 10px;
+  padding: 0px 5px 0px 5px;
+  border: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  box-shadow: 5px 5px 10px black;
-  color: white;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7),
+    -3px -3px 10px rgba(255, 255, 255, 0.9);
+  color: rgba(46, 75, 72, 1);
   font-size: 15px;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+  user-select: none;
+  -webit-user-select: none;
+}
+.insetContainer {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.7),
+    inset -3px -3px 10px rgba(255, 255, 255, 0.9);
 }
 .active {
-  background-color: rgba(0, 97, 171, 1);
+  background-image: radial-gradient(
+    rgba(240, 231, 169, 1),
+    rgba(123, 171, 173, 1) 90%
+  );
 }
 .expired {
-  background-color: rgba(244, 107, 106, 1);
+  background-image: radial-gradient(
+    rgba(242, 137, 137, 1),
+    rgba(123, 171, 173, 1) 125%
+  );
 }
 .permanent {
-  background-color: rgba(126, 50, 171, 1);
+  background-image: radial-gradient(
+    rgba(184, 158, 212, 1),
+    rgba(123, 171, 173, 1) 125%
+  );
 }
 .effectItem {
   margin-top: 5px;
   margin-bottom: 5px;
+  max-width: 90%;
 }
 .effectKeys {
-  color: yellow;
+  color: rgba(50, 73, 119, 1);
+  text-decoration: underline;
 }
 .endResetEffectButtonContainer {
   width: 90%;
   margin: auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
-.endResetEffectButton {
+.endEffectButton {
   margin-bottom: 5px;
-  width: 50%;
+  width: 40%;
+  background-image: radial-gradient(
+    rgba(242, 137, 137, 1),
+    rgba(123, 171, 173, 1) 125%
+  );
+}
+.resetEffectButton {
+  margin-bottom: 5px;
+  width: 40%;
 }

@@ -1,27 +1,63 @@
 html,
 body {
-  background-color: rgba(3, 23, 102, 0.2);
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(123, 171, 173, 1),
+    rgba(71, 126, 170, 1) 100%
+  );
   color: white;
   height: 100%;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
 }
 .topContainer {
-  background-color: rgba(3, 23, 102, 0.5);
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(123, 171, 173, 1),
+    rgba(71, 126, 170, 1) 120%
+  );
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 15px;
+  width: 95%;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5),
+    -3px -3px 10px rgba(255, 255, 255, 0.5);
 }
 .basicButton {
-  height: 25px;
-  color: white;
+  min-height: 25px;
+  color: rgba(35, 37, 62, 1);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  background-color: rgba(3, 26, 48, 1);
+  background-color: inherit;
+  background-image: radial-gradient(rgba(7, 168, 159, 1), transparent 90%);
   border-radius: 5px;
-  box-shadow: 2px 2px 2px black;
+  border: none;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5),
+    -2px -2px 5px rgba(255, 255, 255, 0.5);
 }
 .title {
   margin: auto;
   text-align: center;
+  font-size: 40px;
+  padding-top: 30px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: transparent;
+  text-shadow: 0px -2px 2px rgba(3, 23, 102, 1);
+  background-clip: text;
 }
 .turnCount {
   text-align: center;
-  margin-bottom: 5px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  font-size: 30px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: transparent;
+  text-shadow: 0px -2px 2px rgba(3, 23, 102, 1);
+  background-clip: text;
 }
 .newEffectButtonContainer {
   margin: auto;
@@ -31,8 +67,22 @@ body {
 }
 .newEffectButton {
   width: 100%;
+  margin-bottom: 10px;
 }
 .break {
   flex-basis: 100%;
   height: 0px;
+}
+.pressed {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  background-image: radial-gradient(rgba(242, 181, 137, 1), transparent 100%);
+
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.7),
+    inset -1px -1px 5px rgba(255, 255, 255, 0.9);
+}
+.insetContainer {
+  border-radius: 5px;
+  box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.7),
+    inset -2px -2px 0px rgba(255, 255, 255, 0.9);
 }

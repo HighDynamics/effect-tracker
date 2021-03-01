@@ -2,13 +2,21 @@
   margin: auto;
   display: flex;
   justify-content: space-around;
-  width: 50%;
+  width: 90%;
+  height: 35px;
+}
+.turnManipulatorButton {
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .resetButtonContainer {
   margin: auto;
+  margin-top: 7px;
   width: 30%;
 }
 .resetButton {
   width: 100%;
   margin-top: 5px;
+  background-image: radial-gradient(rgba(242, 137, 137, 1), transparent 90%);
 }
