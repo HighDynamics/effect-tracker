@@ -86,3 +86,35 @@ body {
   box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.7),
     inset -2px -2px 0px rgba(255, 255, 255, 0.9);
 }
+.textInputContainer {
+  color: white;
+  background-color: inherit;
+  margin-bottom: 5px;
+  padding: 5px 5px 5px 5px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.7),
+    inset -1px -1px 5px rgba(255, 255, 255, 0.9);
+}
+.textAreaInputContainer {
+  color: white;
+  background-color: inherit;
+  height: 3.5rem;
+  margin-bottom: 5px;
+  padding: 5px 5px 5px 5px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.7),
+    inset -1px -1px 5px rgba(255, 255, 255, 0.9);
+}
+.numberInputContainer {
+  color: white;
+  background-color: inherit;
+  width: 30px;
+  margin-bottom: 5px;
+  padding: 5px 5px 5px 5px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.7),
+    inset -1px -1px 5px rgba(255, 255, 255, 0.9);
+}

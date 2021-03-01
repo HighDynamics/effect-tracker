@@ -160,12 +160,14 @@ const JumpTurn = ({ setTurnNumber, turnNumber }) => {
           </button>
         </div>
         <div className="jumpNumberInputAndGoButtonContainer">
-          <input
-            type="number"
-            className="durationNumberInput textInput jumpNumberInput"
-            value={jumpNumber}
-            onChange={(e) => setJumpNumber(Number(e.target.value))}
-          />
+          <div className="numberInputContainer">
+            <input
+              type="number"
+              className="durationNumberInput textInput jumpNumberInput"
+              value={jumpNumber}
+              onChange={(e) => setJumpNumber(Number(e.target.value))}
+            />
+          </div>
           <button
             className="goButton basicButton"
             onClick={() => go(jumpSelection)}

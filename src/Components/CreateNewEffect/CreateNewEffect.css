@@ -3,7 +3,6 @@
   flex-wrap: wrap;
   justify-content: space-around;
   border-radius: 25px;
-  margin-bottom: 5px;
 }
 .formItem {
   width: 40%;
@@ -17,24 +16,12 @@
 }
 .textInput {
   color: white;
-  background-color: inherit;
-  height: 1.5rem;
-  padding-left: 5px;
+  background-color: transparent;
   border: none;
-  border-radius: 5px;
-  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.7),
-    inset -1px -1px 5px rgba(255, 255, 255, 0.9);
 }
 .textAreaInput {
-  color: white;
-  background-color: inherit;
-  height: 3.5rem;
-  padding-top: 5px;
-  padding-left: 5px;
+  background-color: transparent;
   border: none;
-  border-radius: 5px;
-  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.7),
-    inset -1px -1px 5px rgba(255, 255, 255, 0.9);
 }
 ::placeholder {
   color: rgba(255, 255, 255, 0.7);
@@ -49,11 +36,10 @@
 .durationInputContainer {
   display: flex;
   justify-content: flex-start;
+  align-items: baseline;
 }
 .durationNumberInput {
-  width: 25%;
-  margin-right: 5px;
-  color: white;
+  width: inherit;
 }
 .durationTypeSelector {
   user-select: none;
@@ -61,6 +47,7 @@
   text-align: center;
   height: 25px;
   line-height: 25px;
+  margin-left: 10px;
   padding: 0px 4px 0px 4px;
   background-image: radial-gradient(
     rgba(240, 231, 169, 1),
@@ -70,7 +57,7 @@
 .durationTypeSelectorOptionsContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
 }
 .durationTypeSelectorOptions {
   margin-bottom: 10px;
@@ -97,4 +84,5 @@
 }
 .addEffectButton {
   width: 100%;
+  margin-top: 10px;
 }

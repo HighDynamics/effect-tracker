@@ -49,26 +49,30 @@ const CreateNewEffect = ({ addEffect, turnNumber, setToggle }) => {
         <div className="formContainer">
           <fieldset className="formItem insetContainer">
             <legend className="formItemTitle">Name</legend>
-            <input
-              type="text"
-              placeholder="name of effect"
-              className="textInput"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
+            <div className="textInputContainer">
+              <input
+                type="text"
+                placeholder="name of effect"
+                className="textInput"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
             <p className="requiredText">* required</p>
           </fieldset>
           <fieldset className="formItem insetContainer">
             <legend className="formItemTitle">Duration</legend>
             <div className="durationInputContainer">
-              <input
-                className="durationNumberInput textInput"
-                type="number"
-                value={duration}
-                onChange={(e) => setDuration(Number(e.target.value))}
-                required
-              />
+              <div className="numberInputContainer">
+                <input
+                  className="durationNumberInput textInput"
+                  type="number"
+                  value={duration}
+                  onChange={(e) => setDuration(Number(e.target.value))}
+                  required
+                />
+              </div>
               {/*Couldn't use buttons here, applied 'button' role*/}
               {expanded ? null : (
                 <div
@@ -135,36 +139,42 @@ const CreateNewEffect = ({ addEffect, turnNumber, setToggle }) => {
           </fieldset>
           <fieldset className="formItem insetContainer">
             <legend className="formItemTitle">Target or Area</legend>
-            <textarea
-              rows="3"
-              cols="30"
-              className="textAreaInput"
-              placeholder="who or what is affected"
-              value={target}
-              onChange={(e) => setTarget(e.target.value)}
-            />
+            <div className="textAreaInputContainer">
+              <textarea
+                rows="3"
+                cols="30"
+                className="textAreaInput"
+                placeholder="who or what is affected"
+                value={target}
+                onChange={(e) => setTarget(e.target.value)}
+              />
+            </div>
           </fieldset>
           <fieldset className="formItem insetContainer">
             <legend className="formItemTitle">Details</legend>
-            <textarea
-              rows="3"
-              cols="30"
-              className="textAreaInput"
-              placeholder='breif description what effect does. ex.: "+4 armor bonus"'
-              value={details}
-              onChange={(e) => setDetails(e.target.value)}
-            />
+            <div className="textAreaInputContainer">
+              <textarea
+                rows="3"
+                cols="30"
+                className="textAreaInput"
+                placeholder='breif description what effect does. ex.: "+4 armor bonus"'
+                value={details}
+                onChange={(e) => setDetails(e.target.value)}
+              />
+            </div>
           </fieldset>
           <fieldset className="formItem insetContainer">
-            <legend className="formItemTitle">Conditions</legend>
-            <textarea
-              rows="3"
-              cols="30"
-              className="textAreaInput"
-              placeholder="ex.: must be within 60' of Sabri"
-              value={conditions}
-              onChange={(e) => setConditions(e.target.value)}
-            />
+            <legend className="formItemTitle">Conditions</legend>{" "}
+            <div className="textAreaInputContainer">
+              <textarea
+                rows="3"
+                cols="30"
+                className="textAreaInput"
+                placeholder="ex.: must be within 60' of Sabri"
+                value={conditions}
+                onChange={(e) => setConditions(e.target.value)}
+              />
+            </div>
           </fieldset>
           <div className="break"></div>
           <div className="addEffectButtonContainer">
