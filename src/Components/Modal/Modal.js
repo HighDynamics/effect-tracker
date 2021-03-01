@@ -22,7 +22,7 @@ const EffectButtons = ({ effect, handleClick, turnNumber }) => {
   );
 };
 
-const KeepEffects = ({ effects, setEffectsAndResetRounds, turnNumber }) => {
+const Reset = ({ effects, setEffectsAndResetRounds, turnNumber }) => {
   const [effectsToKeep, setEffectsToKeep] = useState(
     effects.filter((e) => e.durationType === "permanent")
   );
@@ -76,19 +76,23 @@ const KeepEffects = ({ effects, setEffectsAndResetRounds, turnNumber }) => {
       <div className="keepEffectsContainer">
         <h4 className="keepEffectsHeader">Current Effects</h4>
         <div className="keepLoseHeaders">
-          <p className="smallHeaders">keep</p>
-          <p className="smallHeaders">lose</p>
+          <p className="smallHeaders">Keep</p>
+          <p className="smallHeaders">Lose</p>
         </div>
         <div className="listOfEffectsContainer">
-          <div className="effectsToKeepContainer">{effectsToKeepComponent}</div>
-          <div className="effectsToLoseContainer">{effectsToLoseComponent}</div>
+          <div className="effectsToKeepContainer insetContainer">
+            {effectsToKeepComponent}
+          </div>
+          <div className="effectsToLoseContainer insetContainer">
+            {effectsToLoseComponent}
+          </div>
         </div>
         <div className="confirmKeepersButtonContainer">
           <button
             className="basicButton confirmKeepersButton"
             onClick={setEffects}
           >
-            confirm
+            Confirm Reset
           </button>
         </div>
       </div>
@@ -98,12 +102,12 @@ const KeepEffects = ({ effects, setEffectsAndResetRounds, turnNumber }) => {
 
 const JumpTurn = ({ setTurnNumber, turnNumber }) => {
   const [jumpNumber, setJumpNumber] = useState(1);
-  const [radioSelection, setRadioSelection] = useState("forward");
+  const [jumpSelection, setJumpSelection] = useState("forward");
   const jumpForward = () => setTurnNumber(turnNumber + jumpNumber);
   const jumpBackward = () => setTurnNumber(turnNumber - jumpNumber);
   const goTo = () => setTurnNumber(jumpNumber);
-  const go = (radioSelection) => {
-    switch (radioSelection) {
+  const go = (jumpSelection) => {
+    switch (jumpSelection) {
       case "forward":
         jumpForward();
         break;
@@ -120,53 +124,55 @@ const JumpTurn = ({ setTurnNumber, turnNumber }) => {
   return (
     <>
       <div className="jumpTurnContentContainer">
-        <div
-          className="radioButtonContainer"
-          onChange={(e) => setRadioSelection(e.target.value)}
-        >
-          <label className="radioButtonLabel">
-            <input
-              type="radio"
-              value="forward"
-              onChange={() => setRadioSelection("forward")}
-              checked={radioSelection === "forward"}
-            />
+        <div className="jumpOptionsButtonContainer">
+          <button
+            className={
+              jumpSelection === "forward"
+                ? "jumpOptionsButton basicButton pressed"
+                : "jumpOptionsButton basicButton"
+            }
+            value="forward"
+            onClick={(e) => setJumpSelection(e.target.value)}
+          >
             Number of rounds forward
-          </label>
-        </div>
-        <div className="radioButtonContainer">
-          <label className="radioButtonLabel">
-            <input
-              type="radio"
-              value="backward"
-              onChange={() => setRadioSelection("backward")}
-              checked={radioSelection === "backward"}
-            />
+          </button>
+          <button
+            className={
+              jumpSelection === "backward"
+                ? "jumpOptionsButton basicButton pressed"
+                : "jumpOptionsButton basicButton"
+            }
+            value="backward"
+            onClick={(e) => setJumpSelection(e.target.value)}
+          >
             Number of rounds backward
-          </label>
-        </div>
-        <div className="radioButtonContainer">
-          <label className="radioButtonLabel">
-            <input
-              type="radio"
-              value="goTo"
-              onChange={() => setRadioSelection("goTo")}
-              checked={radioSelection === "goTo"}
-            />
+          </button>
+          <button
+            className={
+              jumpSelection === "goTo"
+                ? "jumpOptionsButton basicButton pressed"
+                : "jumpOptionsButton basicButton"
+            }
+            value="goTo"
+            onClick={(e) => setJumpSelection(e.target.value)}
+          >
             To specified round
-          </label>
+          </button>
         </div>
-        <input
-          type="number"
-          value={jumpNumber}
-          onChange={(e) => setJumpNumber(Number(e.target.value))}
-        />
-        <button
-          className="goButton basicButton"
-          onClick={() => go(radioSelection)}
-        >
-          Go
-        </button>
+        <div className="jumpNumberInputAndGoButtonContainer">
+          <input
+            type="number"
+            className="durationNumberInput textInput jumpNumberInput"
+            value={jumpNumber}
+            onChange={(e) => setJumpNumber(Number(e.target.value))}
+          />
+          <button
+            className="goButton basicButton"
+            onClick={() => go(jumpSelection)}
+          >
+            Go
+          </button>
+        </div>
       </div>
     </>
   );
@@ -192,9 +198,9 @@ const Modal = ({
         return (
           <JumpTurn setTurnNumber={setTurnNumber} turnNumber={turnNumber} />
         );
-      case "keepEffects":
+      case "reset":
         return (
-          <KeepEffects
+          <Reset
             effects={effects}
             setEffectsAndResetRounds={setEffectsAndResetRounds}
             turnNumber={turnNumber}
@@ -207,11 +213,11 @@ const Modal = ({
 
   return (
     <>
-      <div className="modalBody">
+      <div className="modalBody topContainer">
         <div className="modalContent">{displayContent(modal)}</div>
         <div className="closeModalButtonContainer">
           <button className="basicButton closeModalButton" onClick={closeModal}>
-            cancel
+            {modal === "jumpTurn" ? "Close" : "Cancel"}
           </button>
         </div>
       </div>

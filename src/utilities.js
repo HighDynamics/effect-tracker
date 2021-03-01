@@ -34,15 +34,15 @@ function getRoundsToDaysAndHours(rounds) {
 function getRemainingRounds(effect, turnNumber) {
   let remainingRounds = effect.turnUsed + effect.duration - turnNumber;
   switch (effect.durationType) {
-    case "rounds":
+    case "round":
       break;
-    case "minutes":
+    case "minute":
       remainingRounds = effect.turnUsed + effect.duration * 10 - turnNumber;
       break;
-    case "hours":
+    case "hour":
       remainingRounds = effect.turnUsed + effect.duration * 600 - turnNumber;
       break;
-    case "days":
+    case "day":
       remainingRounds = effect.turnUsed + effect.duration * 14400 - turnNumber;
       break;
     case "permanent":

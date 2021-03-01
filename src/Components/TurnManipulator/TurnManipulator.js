@@ -21,18 +21,38 @@ const TurnManipulator = ({
   return (
     <>
       <div className="turnManipulatorButtonsContainer">
-        <button className="basicButton" onClick={previousTurn}>
+        <button
+          className="basicButton turnManipulatorButton"
+          onClick={previousTurn}
+        >
           {previousTurnArrows}
         </button>
-        <button className="basicButton" onClick={toggleModal}>
+        <button
+          className={
+            modal === "jumpTurn"
+              ? "basicButton turnManipulatorButton pressed"
+              : "basicButton turnManipulatorButton"
+          }
+          onClick={toggleModal}
+        >
           Jump
         </button>
-        <button className="basicButton" onClick={nextTurn}>
+        <button
+          className="basicButton turnManipulatorButton"
+          onClick={nextTurn}
+        >
           {nextTurnArrows}
         </button>
       </div>
       <div className="resetButtonContainer">
-        <button className="resetButton basicButton" onClick={reset}>
+        <button
+          className={
+            modal === "reset"
+              ? "resetButton basicButton pressed"
+              : "resetButton basicButton"
+          }
+          onClick={reset}
+        >
           Reset
         </button>
       </div>

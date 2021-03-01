@@ -3,11 +3,12 @@ import { useState } from "react";
 import "./CreateNewEffect.css";
 
 const CreateNewEffect = ({ addEffect, turnNumber, setToggle }) => {
+  const [expanded, setExpanded] = useState(false);
   const [name, setName] = useState("");
   const [target, setTarget] = useState("");
   const [details, setDetails] = useState("");
   const [duration, setDuration] = useState(1);
-  const [durationType, setDurationType] = useState("");
+  const [durationType, setDurationType] = useState("round");
   const [conditions, setConditions] = useState("");
   let effect = {
     name: name,
@@ -17,6 +18,13 @@ const CreateNewEffect = ({ addEffect, turnNumber, setToggle }) => {
     durationType: durationType,
     conditions: conditions,
     turnUsed: turnNumber,
+  };
+  const expandOptions = () => {
+    setExpanded(!expanded);
+  };
+  const handleSetDurationType = (durationType) => {
+    setDurationType(durationType);
+    setExpanded(false);
   };
   const handlePermanentDuration = () => {
     if (effect.durationType === "permanent") {
@@ -31,7 +39,7 @@ const CreateNewEffect = ({ addEffect, turnNumber, setToggle }) => {
     setTarget("");
     setDetails("");
     setDuration(1);
-    setDurationType("rounds");
+    setDurationType("round");
     setConditions("");
     setToggle(false);
   };
@@ -39,66 +47,120 @@ const CreateNewEffect = ({ addEffect, turnNumber, setToggle }) => {
     <>
       <form onSubmit={handleSubmit}>
         <div className="formContainer">
-          <fieldset className="formItem">
+          <fieldset className="formItem insetContainer">
             <legend className="formItemTitle">Name</legend>
             <input
               type="text"
               placeholder="name of effect"
+              className="textInput"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
             />
             <p className="requiredText">* required</p>
           </fieldset>
-          <fieldset className="formItem">
+          <fieldset className="formItem insetContainer">
             <legend className="formItemTitle">Duration</legend>
             <div className="durationInputContainer">
               <input
-                className="durationNumberInput"
+                className="durationNumberInput textInput"
                 type="number"
-                placeholder="4"
                 value={duration}
                 onChange={(e) => setDuration(Number(e.target.value))}
                 required
               />
-              <select
-                className="durationTypeSelector"
-                value={durationType === "" ? "rounds" : durationType}
-                onChange={(e) => setDurationType(e.target.value)}
-              >
-                <option value="rounds">round(s)</option>
-                <option value="minutes">minute(s)</option>
-                <option value="hours">hour(s)</option>
-                <option value="days">day(s)</option>
-                <option value="permanent">permanent</option>
-              </select>
+              {/*Couldn't use buttons here, applied 'button' role*/}
+              {expanded ? null : (
+                <div
+                  role="button"
+                  className={
+                    durationType === "permanent"
+                      ? "durationTypeSelector basicButton permanent"
+                      : "durationTypeSelector basicButton"
+                  }
+                  value={durationType === "" ? "round" : durationType}
+                  onClick={expandOptions}
+                >
+                  {durationType === "permanent"
+                    ? durationType
+                    : durationType + "(s)"}
+                </div>
+              )}
+              {expanded ? (
+                <div className="durationTypeSelectorOptionsContainer">
+                  <div
+                    role="button"
+                    className="durationTypeSelectorOptions basicButton"
+                    value="round"
+                    onClick={() => handleSetDurationType("round")}
+                  >
+                    round(s)
+                  </div>
+                  <div
+                    role="button"
+                    className="durationTypeSelectorOptions basicButton"
+                    value="minute"
+                    onClick={() => handleSetDurationType("minute")}
+                  >
+                    minute(s)
+                  </div>
+                  <div
+                    role="button"
+                    className="durationTypeSelectorOptions basicButton"
+                    value="hour"
+                    onClick={() => handleSetDurationType("hour")}
+                  >
+                    hour(s)
+                  </div>
+                  <div
+                    role="button"
+                    className="durationTypeSelectorOptions basicButton"
+                    value="day"
+                    onClick={() => handleSetDurationType("day")}
+                  >
+                    day(s)
+                  </div>
+                  <div
+                    role="button"
+                    className="durationTypeSelectorOptions permanent basicButton"
+                    value="permanent"
+                    onClick={() => handleSetDurationType("permanent")}
+                  >
+                    permanent
+                  </div>
+                </div>
+              ) : null}
             </div>{" "}
             <p className="requiredText">* required</p>
           </fieldset>
-          <fieldset className="formItem">
+          <fieldset className="formItem insetContainer">
             <legend className="formItemTitle">Target or Area</legend>
-            <input
-              type="text"
+            <textarea
+              rows="3"
+              cols="30"
+              className="textAreaInput"
               placeholder="who or what is affected"
               value={target}
               onChange={(e) => setTarget(e.target.value)}
             />
           </fieldset>
-          <fieldset className="formItem">
+          <fieldset className="formItem insetContainer">
             <legend className="formItemTitle">Details</legend>
             <textarea
-              rows="4"
+              rows="3"
               cols="30"
+              className="textAreaInput"
               placeholder='breif description what effect does. ex.: "+4 armor bonus"'
               value={details}
               onChange={(e) => setDetails(e.target.value)}
             />
           </fieldset>
-          <fieldset className="formItem">
+          <fieldset className="formItem insetContainer">
             <legend className="formItemTitle">Conditions</legend>
             <textarea
-              rows="4"
+              rows="3"
               cols="30"
+              className="textAreaInput"
               placeholder="ex.: must be within 60' of Sabri"
               value={conditions}
               onChange={(e) => setConditions(e.target.value)}
@@ -106,11 +168,7 @@ const CreateNewEffect = ({ addEffect, turnNumber, setToggle }) => {
           </fieldset>
           <div className="break"></div>
           <div className="addEffectButtonContainer">
-            <input
-              className="basicButton addEffectButton"
-              type="submit"
-              value="add effect"
-            />
+            <input className="basicButton addEffectButton" type="submit" />
           </div>
         </div>
       </form>

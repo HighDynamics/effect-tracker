@@ -51,43 +51,49 @@ const EffectItem = ({
   const resetDuration = () => resetEffectDuration(effect);
 
   return (
-    <button
-      className={additionalClass + " effectContainer"}
+    <div
+      role="button"
+      className={
+        toggle
+          ? additionalClass + " effectContainer insetContainer"
+          : additionalClass + " effectContainer"
+      }
       onClick={() => setToggle(!toggle)}
     >
       <p className="effectItem">
-        <span className="effectKeys">Name:</span> {name}
+        <span className="effectKeys">Name</span> - {name}
       </p>
       <p className="effectItem">
-        <span className="effectKeys">Time Left:</span> {remainingTime}
+        <span className="effectKeys">Time Left</span> - {remainingTime}
       </p>
       {toggle ? (
         <>
+          <div className="break"></div>
           {target !== "" ? (
             <p className="effectItem">
-              <span className="effectKeys">Target:</span> {target}
+              <span className="effectKeys">Target</span> - {target}
             </p>
           ) : null}
           {details !== "" ? (
             <p className="effectItem">
-              <span className="effectKeys">Details:</span> {details}
+              <span className="effectKeys">Details</span> - {details}
             </p>
           ) : null}
           {conditions !== "" ? (
             <p className="effectItem">
-              <span className="effectKeys">Conditions:</span> {conditions}
+              <span className="effectKeys">Conditions</span> - {conditions}
             </p>
           ) : null}
           <div className="break"></div>
           <div className="endResetEffectButtonContainer">
             <button
-              className="basicButton endResetEffectButton"
+              className="basicButton resetEffectButton"
               onClick={resetDuration}
             >
               Reset Duration
             </button>
             <button
-              className="basicButton endResetEffectButton"
+              className="basicButton endEffectButton"
               onClick={() => removeEffect(effect)}
             >
               End Effect
@@ -95,7 +101,7 @@ const EffectItem = ({
           </div>
         </>
       ) : null}
-    </button>
+    </div>
   );
 };
 

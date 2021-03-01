@@ -25,10 +25,10 @@ function App() {
     localStorage.setItem("turnNumber", turnNumber);
   }, [turnNumber]);
   const reset = () => {
-    if (modal === "keepEffects") {
+    if (modal === "reset") {
       setModal("off");
     } else if (effects.length > 0) {
-      setModal("keepEffects");
+      setModal("reset");
     } else {
       setTurnNumber(1);
     }
@@ -41,48 +41,54 @@ function App() {
   };
   return (
     <div className="app">
-      <div className="topContainer">
-        <h1 className="title">Effect Tracker</h1>
-        <h2 className="turnCount">Turn {turnNumber}</h2>
-        <TurnManipulator
-          setTurnNumber={setTurnNumber}
-          turnNumber={turnNumber}
-          reset={reset}
-          setModal={setModal}
-          modal={modal}
-        />
-        <br />
-        <div className="newEffectButtonContainer">
-          <button
-            className="newEffectButton basicButton"
-            onClick={() => setToggle(!toggle)}
-          >
-            New Effect
-          </button>
-        </div>
-        {toggle ? (
-          <CreateNewEffect
-            addEffect={addEffect}
+      <div className="shadow">
+        <div className="topContainer">
+          <h1 className="title">Effect Tracker</h1>
+          <h2 className="turnCount">Turn {turnNumber}</h2>
+          <TurnManipulator
+            setTurnNumber={setTurnNumber}
             turnNumber={turnNumber}
-            setToggle={setToggle}
-          />
-        ) : null}
-        {modal !== "off" ? (
-          <Modal
+            reset={reset}
             setModal={setModal}
             modal={modal}
-            turnNumber={turnNumber}
-            setTurnNumber={setTurnNumber}
-            effects={effects}
-            setEffects={setEffects}
           />
-        ) : null}
+          <br />
+          <div className="newEffectButtonContainer">
+            <button
+              className={
+                toggle
+                  ? "newEffectButton basicButton pressed"
+                  : "newEffectButton basicButton"
+              }
+              onClick={() => setToggle(!toggle)}
+            >
+              New Effect
+            </button>
+          </div>
+          {toggle ? (
+            <CreateNewEffect
+              addEffect={addEffect}
+              turnNumber={turnNumber}
+              setToggle={setToggle}
+            />
+          ) : null}
+          {modal !== "off" ? (
+            <Modal
+              setModal={setModal}
+              modal={modal}
+              turnNumber={turnNumber}
+              setTurnNumber={setTurnNumber}
+              effects={effects}
+              setEffects={setEffects}
+            />
+          ) : null}
+        </div>
+        <Effects
+          turnNumber={turnNumber}
+          effects={effects}
+          setEffects={setEffects}
+        />
       </div>
-      <Effects
-        turnNumber={turnNumber}
-        effects={effects}
-        setEffects={setEffects}
-      />
     </div>
   );
 }
