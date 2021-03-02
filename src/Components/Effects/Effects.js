@@ -118,7 +118,14 @@ const Effects = ({ turnNumber, effects, setEffects }) => {
     newEffectsArray[index].turnUsed = turnNumber;
     setEffects(newEffectsArray);
   };
-  const effectItem = effects.map((effect) => (
+
+  const sortedEffects = effects.sort((a, b) => {
+    const remainingRoundsA = getRemainingRounds(a, turnNumber);
+    const remainingRoundsB = getRemainingRounds(b, turnNumber);
+    return remainingRoundsA > remainingRoundsB ? 1 : -1;
+  });
+
+  const effectItem = sortedEffects.map((effect) => (
     <EffectItem
       effect={effect}
       removeEffect={removeEffect}
