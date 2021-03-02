@@ -83,11 +83,13 @@ function App() {
             />
           ) : null}
         </div>
-        <Effects
-          turnNumber={turnNumber}
-          effects={effects}
-          setEffects={setEffects}
-        />
+        <div className="effectsListContainer">
+          <Effects
+            turnNumber={turnNumber}
+            effects={effects}
+            setEffects={setEffects}
+          />
+        </div>
       </div>
     </div>
   );
