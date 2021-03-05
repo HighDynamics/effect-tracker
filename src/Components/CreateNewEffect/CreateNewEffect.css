@@ -85,11 +85,16 @@
   margin-top: 5px;
   margin-bottom: 5px;
   padding-bottom: 5px;
-  width: 30%;
+  width: 50%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 .addEffectButton {
   width: 100%;
   margin-top: 10px;
+}
+.cancelEditButton {
+  width: 100%;
+  margin-top: 10px;
+  margin-left: 10px;
 }

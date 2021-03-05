@@ -58,11 +58,15 @@
 }
 .endEffectButton {
   margin-bottom: 5px;
-  width: 40%;
+  width: 20%;
   background-image: radial-gradient(
     rgba(242, 137, 137, 1),
     rgba(242, 137, 137, 0) 125%
   );
+}
+.editEffectButton {
+  margin-bottom: 5px;
+  width: 20%;
 }
 .resetEffectButton {
   margin-bottom: 5px;
