@@ -1,6 +1,6 @@
 {
-  "homepage": "http://highdynamics.github.io/turn-tracker",
-  "name": "turn-tracker",
+  "homepage": "http://highdynamics.github.io/effect-tracker",
+  "name": "effect-tracker",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
