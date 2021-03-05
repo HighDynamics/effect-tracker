@@ -30,7 +30,10 @@ body {
   color: rgba(35, 37, 62, 1);
   border: 1px solid rgba(255, 255, 255, 0.5);
   background-color: inherit;
-  background-image: radial-gradient(rgba(7, 168, 159, 1), transparent 90%);
+  background-image: radial-gradient(
+    rgba(7, 168, 159, 1),
+    rgba(255, 255, 255, 0) 90%
+  );
   border-radius: 5px;
   border: none;
   font-family: "Ubuntu", sans-serif;
@@ -99,7 +102,10 @@ body {
 .pressed {
   padding-top: 7px;
   padding-bottom: 7px;
-  background-image: radial-gradient(rgba(242, 181, 137, 1), transparent 100%);
+  background-image: radial-gradient(
+    rgba(242, 181, 137, 1),
+    rgba(255, 255, 255, 0) 100%
+  );
 
   box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.7),
     inset -1px -1px 5px rgba(255, 255, 255, 0.9);

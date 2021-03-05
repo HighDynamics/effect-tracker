@@ -81,7 +81,7 @@ const ManageTrackers = ({
             Rename
           </button>
           <button
-            className="basicButton reset"
+            className="basicButton deleteTrackerButton"
             value="deleteTracker"
             onClick={deleteTracker}
           >

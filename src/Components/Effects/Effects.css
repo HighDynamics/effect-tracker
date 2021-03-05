@@ -26,19 +26,19 @@
 .active {
   background-image: radial-gradient(
     rgba(240, 231, 169, 1),
-    rgba(123, 171, 173, 1) 90%
+    rgba(255, 255, 255, 0) 90%
   );
 }
 .expired {
   background-image: radial-gradient(
     rgba(242, 137, 137, 1),
-    rgba(123, 171, 173, 1) 125%
+    rgba(255, 255, 255, 0) 125%
   );
 }
 .permanent {
   background-image: radial-gradient(
     rgba(184, 158, 212, 1),
-    rgba(123, 171, 173, 1) 125%
+    rgba(255, 255, 255, 0) 125%
   );
 }
 .effectItem {
@@ -61,7 +61,7 @@
   width: 40%;
   background-image: radial-gradient(
     rgba(242, 137, 137, 1),
-    rgba(123, 171, 173, 1) 125%
+    rgba(255, 255, 255, 0) 125%
   );
 }
 .resetEffectButton {

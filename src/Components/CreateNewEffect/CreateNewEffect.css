@@ -52,7 +52,7 @@
   padding: 0px 4px 0px 4px;
   background-image: radial-gradient(
     rgba(240, 231, 169, 1),
-    rgba(123, 171, 173, 1) 70%
+    rgba(255, 255, 255, 0) 70%
   );
 }
 .durationTypeSelectorOptionsContainer {
@@ -68,11 +68,17 @@
   line-height: 25px;
   padding: 0px 4px 0px 4px;
   background-color: transparent;
-  background-image: radial-gradient(rgba(240, 231, 169, 1), transparent 90%);
+  background-image: radial-gradient(
+    rgba(240, 231, 169, 1),
+    rgba(255, 255, 255, 0) 90%
+  );
 }
 .permanent {
   background-color: transparent;
-  background-image: radial-gradient(rgba(184, 158, 212, 1), transparent 90%);
+  background-image: radial-gradient(
+    rgba(184, 158, 212, 1),
+    rgba(255, 255, 255, 0) 90%
+  );
 }
 .addEffectButtonContainer {
   margin: auto;

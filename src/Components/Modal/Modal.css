@@ -24,7 +24,10 @@
 .goButton {
   height: 25px;
   width: 40px;
-  background-image: radial-gradient(rgba(240, 231, 169, 1), transparent 70%);
+  background-image: radial-gradient(
+    rgba(240, 231, 169, 1),
+    rgba(255, 255, 255, 0) 70%
+  );
 }
 .closeModalButtonContainer {
   width: 30%;
@@ -90,5 +93,8 @@
 }
 .confirmKeepersButton {
   width: 100%;
-  background-image: radial-gradient(rgba(242, 137, 137, 1), transparent 100%);
+  background-image: radial-gradient(
+    rgba(242, 137, 137, 1),
+    rgba(255, 255, 255, 0) 100%
+  );
 }
