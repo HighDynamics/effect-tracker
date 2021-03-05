@@ -2,14 +2,33 @@ import { useState } from "react";
 
 import "./CreateNewEffect.css";
 
-const CreateNewEffect = ({ addEffect, turnNumber, setToggle }) => {
+const CreateNewEffect = ({
+  addEffect,
+  turnNumber,
+  setToggle,
+  currentEffect,
+  setToggleEdit,
+  confirmEditEffect,
+}) => {
   const [expanded, setExpanded] = useState(false);
-  const [name, setName] = useState("");
-  const [target, setTarget] = useState("");
-  const [details, setDetails] = useState("");
-  const [duration, setDuration] = useState(1);
-  const [durationType, setDurationType] = useState("round");
-  const [conditions, setConditions] = useState("");
+  const [name, setName] = useState(currentEffect ? currentEffect.name : "");
+  const [target, setTarget] = useState(
+    currentEffect ? currentEffect.target : ""
+  );
+  const [details, setDetails] = useState(
+    currentEffect ? currentEffect.details : ""
+  );
+  const [duration, setDuration] = useState(
+    currentEffect ? currentEffect.duration : 1
+  );
+  const [durationType, setDurationType] = useState(
+    currentEffect ? currentEffect.durationType : "round"
+  );
+  const [conditions, setConditions] = useState(
+    currentEffect ? currentEffect.conditions : ""
+  );
+  const turnUsed = currentEffect ? currentEffect.turnUsed : turnNumber;
+
   let effect = {
     name: name,
     target: target,
@@ -17,7 +36,7 @@ const CreateNewEffect = ({ addEffect, turnNumber, setToggle }) => {
     duration: duration,
     durationType: durationType,
     conditions: conditions,
-    turnUsed: turnNumber,
+    turnUsed: turnUsed,
   };
   const expandOptions = () => {
     setExpanded(!expanded);
@@ -33,15 +52,28 @@ const CreateNewEffect = ({ addEffect, turnNumber, setToggle }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    handlePermanentDuration();
-    addEffect(effect);
-    setName("");
-    setTarget("");
-    setDetails("");
-    setDuration(1);
-    setDurationType("round");
-    setConditions("");
-    setToggle(false);
+    if (currentEffect) {
+      handlePermanentDuration();
+      confirmEditEffect(effect);
+      console.log(effect);
+      setName("");
+      setTarget("");
+      setDetails("");
+      setDuration(1);
+      setDurationType("round");
+      setConditions("");
+      setToggleEdit(false);
+    } else {
+      handlePermanentDuration();
+      addEffect(effect);
+      setName("");
+      setTarget("");
+      setDetails("");
+      setDuration(1);
+      setDurationType("round");
+      setConditions("");
+      setToggle(false);
+    }
   };
   return (
     <>
@@ -179,6 +211,14 @@ const CreateNewEffect = ({ addEffect, turnNumber, setToggle }) => {
           <div className="break"></div>
           <div className="addEffectButtonContainer">
             <input className="basicButton addEffectButton" type="submit" />
+            {currentEffect ? (
+              <button
+                className="basicButton cancelEditButton"
+                onClick={() => setToggleEdit(false)}
+              >
+                Cancel
+              </button>
+            ) : null}
           </div>
         </div>
       </form>

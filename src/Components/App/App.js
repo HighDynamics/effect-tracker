@@ -102,8 +102,9 @@ function App() {
               />
             </div>
           ) : null}
-          <h2 className="currentEffectsListHeader">"{tracker}"</h2>
-          <h2 className="turnCount">Turn {turnNumber}</h2>
+          <h2 className="turnCount">
+            {tracker}: Turn {turnNumber}
+          </h2>
           <TurnManipulator
             turnNumber={turnNumber}
             reset={reset}
@@ -146,10 +147,11 @@ function App() {
         <div className="effectsListContainer">
           <Effects
             turnNumber={turnNumber}
-            effects={effects[tracker]["effects"]}
+            effects={effects}
             setEffects={setEffects}
             removeEffect={removeEffect}
             resetEffectDuration={resetEffectDuration}
+            tracker={tracker}
           />
         </div>
       </div>
