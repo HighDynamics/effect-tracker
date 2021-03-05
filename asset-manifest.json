@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/effect-tracker/static/css/main.55406b64.chunk.css",
+    "main.css": "/effect-tracker/static/css/main.aa7c6773.chunk.css",
     "main.js": "/effect-tracker/static/js/main.25afa57b.chunk.js",
     "main.js.map": "/effect-tracker/static/js/main.25afa57b.chunk.js.map",
     "runtime-main.js": "/effect-tracker/static/js/runtime-main.445b6e3b.js",
@@ -10,13 +10,13 @@
     "static/js/3.518819af.chunk.js": "/effect-tracker/static/js/3.518819af.chunk.js",
     "static/js/3.518819af.chunk.js.map": "/effect-tracker/static/js/3.518819af.chunk.js.map",
     "index.html": "/effect-tracker/index.html",
-    "static/css/main.55406b64.chunk.css.map": "/effect-tracker/static/css/main.55406b64.chunk.css.map",
+    "static/css/main.aa7c6773.chunk.css.map": "/effect-tracker/static/css/main.aa7c6773.chunk.css.map",
     "static/js/2.8347d45f.chunk.js.LICENSE.txt": "/effect-tracker/static/js/2.8347d45f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.445b6e3b.js",
     "static/js/2.8347d45f.chunk.js",
-    "static/css/main.55406b64.chunk.css",
+    "static/css/main.aa7c6773.chunk.css",
     "static/js/main.25afa57b.chunk.js"
   ]
 }
