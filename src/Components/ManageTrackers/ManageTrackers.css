@@ -23,6 +23,6 @@
 .deleteTrackerButton {
   background-image: radial-gradient(
     rgba(242, 137, 137, 1),
-    rgba(255, 255, 255, 0) 90%
+    rgba(242, 137, 137, 0) 90%
   );
 }
