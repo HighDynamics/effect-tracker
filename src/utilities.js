@@ -52,7 +52,6 @@ function getRemainingRounds(effect, turnNumber) {
   }
   return remainingRounds;
 }
-
 export {
   clone,
   getClassName,

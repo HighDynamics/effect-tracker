@@ -1,16 +1,16 @@
 import "./TurnManipulator.css";
 
 const TurnManipulator = ({
-  setTurnNumber,
   turnNumber,
   reset,
   setModal,
   modal,
+  changeTurn,
 }) => {
   const previousTurnArrows = "<<";
   const nextTurnArrows = ">>";
-  const nextTurn = () => setTurnNumber(turnNumber + 1);
-  const previousTurn = () => setTurnNumber(turnNumber - 1);
+  const nextTurn = () => changeTurn(1, "forward");
+  const previousTurn = () => changeTurn(1, "backward");
   const toggleModal = () => {
     if (modal === "jumpTurn") {
       setModal("off");

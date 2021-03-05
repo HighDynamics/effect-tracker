@@ -40,6 +40,8 @@ const Reset = ({ effects, setEffectsAndResetRounds, turnNumber }) => {
       newLosers.push(effectToSwap);
       setEffectsToKeep(newKeepers);
       setEffectsToLose(newLosers);
+      console.log(effectsToKeep);
+      console.log(effectsToLose);
     } else {
       const index = effectsToLose.findIndex((effect) => effect.name === name);
       const effectToSwap = effectsToLose.find((effect) => effect.name === name);
@@ -52,7 +54,7 @@ const Reset = ({ effects, setEffectsAndResetRounds, turnNumber }) => {
     }
   };
 
-  const setEffects = () => setEffectsAndResetRounds(effectsToKeep);
+  const confirmReset = () => setEffectsAndResetRounds(effectsToKeep);
 
   const effectsToKeepComponent = effectsToKeep.map((effect) => (
     <EffectButtons
@@ -90,7 +92,7 @@ const Reset = ({ effects, setEffectsAndResetRounds, turnNumber }) => {
         <div className="confirmKeepersButtonContainer">
           <button
             className="basicButton confirmKeepersButton"
-            onClick={setEffects}
+            onClick={confirmReset}
           >
             Confirm Reset
           </button>
@@ -100,27 +102,9 @@ const Reset = ({ effects, setEffectsAndResetRounds, turnNumber }) => {
   );
 };
 
-const JumpTurn = ({ setTurnNumber, turnNumber }) => {
+const JumpTurn = ({ changeTurn }) => {
   const [jumpNumber, setJumpNumber] = useState(1);
   const [jumpSelection, setJumpSelection] = useState("forward");
-  const jumpForward = () => setTurnNumber(turnNumber + jumpNumber);
-  const jumpBackward = () => setTurnNumber(turnNumber - jumpNumber);
-  const goTo = () => setTurnNumber(jumpNumber);
-  const go = (jumpSelection) => {
-    switch (jumpSelection) {
-      case "forward":
-        jumpForward();
-        break;
-      case "backward":
-        jumpBackward();
-        break;
-      case "goTo":
-        goTo();
-        break;
-      default:
-        alert("Something went wrong.");
-    }
-  };
   return (
     <>
       <div className="jumpTurnContentContainer">
@@ -170,7 +154,7 @@ const JumpTurn = ({ setTurnNumber, turnNumber }) => {
           </div>
           <button
             className="goButton basicButton"
-            onClick={() => go(jumpSelection)}
+            onClick={() => changeTurn(jumpNumber, jumpSelection)}
           >
             Go
           </button>
@@ -183,27 +167,28 @@ const JumpTurn = ({ setTurnNumber, turnNumber }) => {
 const Modal = ({
   setModal,
   modal,
-  setTurnNumber,
+  changeTurn,
   turnNumber,
   effects,
   setEffects,
+  tracker,
 }) => {
   const closeModal = () => setModal("off");
   const setEffectsAndResetRounds = (newArray) => {
-    setEffects(newArray);
-    setTurnNumber(1);
+    const newEffectsArray = clone(effects);
+    newEffectsArray[tracker].effects = newArray;
+    newEffectsArray[tracker].turn = 1;
+    setEffects(newEffectsArray);
     setModal("off");
   };
   const displayContent = (modal) => {
     switch (modal) {
       case "jumpTurn":
-        return (
-          <JumpTurn setTurnNumber={setTurnNumber} turnNumber={turnNumber} />
-        );
+        return <JumpTurn changeTurn={changeTurn} />;
       case "reset":
         return (
           <Reset
-            effects={effects}
+            effects={effects[tracker].effects}
             setEffectsAndResetRounds={setEffectsAndResetRounds}
             turnNumber={turnNumber}
           />

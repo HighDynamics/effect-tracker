@@ -3,7 +3,6 @@ import { useState } from "react";
 import "./Effects.css";
 
 import {
-  clone,
   getClassName,
   getRoundsToMinutesAndSeconds,
   getRoundsToHoursAndMinutes,
@@ -105,20 +104,13 @@ const EffectItem = ({
   );
 };
 
-const Effects = ({ turnNumber, effects, setEffects }) => {
-  const removeEffect = (effect) => {
-    const newEffectsArray = clone(effects);
-    const index = newEffectsArray.findIndex((e) => e.name === effect.name);
-    newEffectsArray.splice(index, 1);
-    setEffects(newEffectsArray);
-  };
-  const resetEffectDuration = (effect) => {
-    const newEffectsArray = clone(effects);
-    const index = newEffectsArray.findIndex((e) => e.name === effect.name);
-    newEffectsArray[index].turnUsed = turnNumber;
-    setEffects(newEffectsArray);
-  };
-
+const Effects = ({
+  turnNumber,
+  effects,
+  setEffects,
+  removeEffect,
+  resetEffectDuration,
+}) => {
   const sortedEffects = effects.sort((a, b) => {
     const remainingRoundsA = getRemainingRounds(a, turnNumber);
     const remainingRoundsB = getRemainingRounds(b, turnNumber);

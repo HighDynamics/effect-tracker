@@ -6,78 +6,138 @@ import TurnManipulator from "../TurnManipulator/TurnManipulator";
 import Effects from "../Effects/Effects";
 import CreateNewEffect from "../CreateNewEffect/CreateNewEffect";
 import Modal from "../Modal/Modal";
+import ManageTrackers from "../ManageTrackers/ManageTrackers";
 
 import { clone } from "../../utilities.js";
 
 function App() {
-  const [turnNumber, setTurnNumber] = useState(
-    Number(localStorage.getItem("turnNumber")) || 1
-  );
   const [effects, setEffects] = useState(
-    JSON.parse(localStorage.getItem("effects")) || []
+    JSON.parse(localStorage.getItem("effects")) || {
+      "1": { turn: 1, effects: [] },
+    }
   );
-  const [toggle, setToggle] = useState(false);
+  const [tracker, setTracker] = useState(Object.keys(effects)[0]);
+  const [toggleNewEffect, setToggleNewEffect] = useState(false);
+  const [toggleManageTrackers, setToggleManageTrackers] = useState(false);
   const [modal, setModal] = useState("off");
+  const turnNumber = effects[tracker].turn;
+
   useEffect(() => {
     localStorage.setItem("effects", JSON.stringify(effects));
   }, [effects]);
-  useEffect(() => {
-    localStorage.setItem("turnNumber", turnNumber);
-  }, [turnNumber]);
+
   const reset = () => {
     if (modal === "reset") {
       setModal("off");
-    } else if (effects.length > 0) {
+    } else if (effects[tracker].effects.length > 0) {
       setModal("reset");
     } else {
-      setTurnNumber(1);
+      const newEffectsArray = clone(effects);
+      newEffectsArray[tracker].turn = 1;
+      setEffects(newEffectsArray);
     }
   };
-
+  const changeTurn = (number, direction) => {
+    const newEffectsArray = clone(effects);
+    switch (direction) {
+      case "forward":
+        newEffectsArray[tracker].turn += number;
+        break;
+      case "backward":
+        newEffectsArray[tracker].turn -= number;
+        break;
+      case "goTo":
+        newEffectsArray[tracker].turn = number;
+        break;
+      default:
+        return number;
+    }
+    setEffects(newEffectsArray);
+  };
   const addEffect = (effect) => {
-    const clonedEffectsArray = clone(effects);
-    clonedEffectsArray.push(effect);
-    setEffects(clonedEffectsArray);
+    const newEffectsArray = clone(effects);
+    newEffectsArray[tracker].effects.push(effect);
+    setEffects(newEffectsArray);
+  };
+  const removeEffect = (effect) => {
+    const newEffectsArray = clone(effects);
+    const index = newEffectsArray[tracker].effects.findIndex(
+      (e) => e.name === effect.name
+    );
+    newEffectsArray[tracker].effects.splice(index, 1);
+    setEffects(newEffectsArray);
+  };
+  const resetEffectDuration = (effect) => {
+    const newEffectsArray = clone(effects);
+    const index = newEffectsArray[tracker].effects.findIndex(
+      (e) => e.name === effect.name
+    );
+    newEffectsArray[tracker].effects[index].turnUsed = turnNumber;
+    setEffects(newEffectsArray);
   };
   return (
     <div className="app">
       <div className="shadow">
         <div className="topContainer">
           <h1 className="title">Effect Tracker</h1>
+          <div className="manageTrackersButtonContainer">
+            <button
+              className={
+                toggleManageTrackers
+                  ? "basicButton manageTrackersButton pressed"
+                  : "basicButton manageTrackersButton"
+              }
+              onClick={() => setToggleManageTrackers(!toggleManageTrackers)}
+            >
+              Manage Trackers
+            </button>
+          </div>
+          {toggleManageTrackers ? (
+            <div className="manangeTrackersContainer insetContainer">
+              <ManageTrackers
+                effects={effects}
+                setEffects={setEffects}
+                tracker={tracker}
+                setTracker={setTracker}
+              />
+            </div>
+          ) : null}
+          <h2 className="currentEffectsListHeader">"{tracker}"</h2>
           <h2 className="turnCount">Turn {turnNumber}</h2>
           <TurnManipulator
-            setTurnNumber={setTurnNumber}
             turnNumber={turnNumber}
             reset={reset}
             setModal={setModal}
             modal={modal}
+            changeTurn={changeTurn}
           />
           <br />
           <div className="newEffectButtonContainer">
             <button
               className={
-                toggle
+                toggleNewEffect
                   ? "newEffectButton basicButton pressed"
                   : "newEffectButton basicButton"
               }
-              onClick={() => setToggle(!toggle)}
+              onClick={() => setToggleNewEffect(!toggleNewEffect)}
             >
               New Effect
             </button>
           </div>
-          {toggle ? (
+          {toggleNewEffect ? (
             <CreateNewEffect
               addEffect={addEffect}
               turnNumber={turnNumber}
-              setToggle={setToggle}
+              setToggle={setToggleNewEffect}
             />
           ) : null}
           {modal !== "off" ? (
             <Modal
               setModal={setModal}
               modal={modal}
+              tracker={tracker}
               turnNumber={turnNumber}
-              setTurnNumber={setTurnNumber}
+              changeTurn={changeTurn}
               effects={effects}
               setEffects={setEffects}
             />
@@ -86,8 +146,10 @@ function App() {
         <div className="effectsListContainer">
           <Effects
             turnNumber={turnNumber}
-            effects={effects}
+            effects={effects[tracker]["effects"]}
             setEffects={setEffects}
+            removeEffect={removeEffect}
+            resetEffectDuration={resetEffectDuration}
           />
         </div>
       </div>
